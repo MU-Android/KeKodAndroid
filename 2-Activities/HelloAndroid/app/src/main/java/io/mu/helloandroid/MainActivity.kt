@@ -1,51 +1,61 @@
 package io.mu.helloandroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import io.mu.helloandroid.ui.SecondActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.e("Kekod", "onCreate")
+        Log.e("MainActivityLog", "onCreate")
 
         setContentView(R.layout.activity_main)
 
-        Log.e("Kekod", "onCreate2")
+        Log.e("MainActivityLog", "onCreate2")
+
+        val btnOpenSecondActivity = findViewById<Button>(R.id.btnOpenSecondActivity)
+        btnOpenSecondActivity.setOnClickListener {
+            startActivity(Intent(this, SecondActivity::class.java))
+            finish()
+//            startActivityForResult()
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        Log.e("Kekod", "onStart")
+        Log.e("MainActivityLog", "onStart")
 
     }
 
     override fun onResume() {
         super.onResume()
-        Log.e("Kekod", "onResume")
+        Log.e("MainActivityLog", "onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.e("Kekod", "onPause")
+        Log.e("MainActivityLog", "onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.e("Kekod", "onStop")
+        Log.e("MainActivityLog", "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e("Kekod", "onDestroy")
+        Log.e("MainActivityLog", "onDestroy")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.e("Kekod", "onRestart")
+        Log.e("MainActivityLog", "onRestart")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -55,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val userField = etUserField.text.toString()
         outState.putString("userField", userField)
 
-        Log.e("Kekod", "onSaveInstanceState")
+        Log.e("MainActivityLog", "onSaveInstanceState")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -65,27 +75,27 @@ class MainActivity : AppCompatActivity() {
         val etUserField = findViewById<EditText>(R.id.etUserField)
         etUserField.setText(userField)
 
-        Log.e("Kekod", "onRestoreInstanceState")
+        Log.e("MainActivityLog", "onRestoreInstanceState")
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Log.e("Kekod", "onBackPressed")
+        Log.e("MainActivityLog", "onBackPressed")
     }
 
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
-        Log.e("Kekod", "onUserLeaveHint")
+        Log.e("MainActivityLog", "onUserLeaveHint")
     }
 
     override fun onUserInteraction() {
         super.onUserInteraction()
-        Log.e("Kekod", "onUserInteraction")
+        Log.e("MainActivityLog", "onUserInteraction")
     }
 
     override fun onContentChanged() {
         super.onContentChanged()
-        Log.e("Kekod", "onContentChanged")
+        Log.e("MainActivityLog", "onContentChanged")
     }
 
     override fun onLowMemory() {

@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ThirdActivity">
+    tools:context=".ui.ThirdActivity"
+    android:background="@android:color/holo_orange_dark"
+    >
 
 </androidx.constraintlayout.widget.ConstraintLayout>
