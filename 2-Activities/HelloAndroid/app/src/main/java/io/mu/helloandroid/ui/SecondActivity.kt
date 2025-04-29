@@ -18,6 +18,13 @@ class SecondActivity : AppCompatActivity() {
 
         Log.e("SecondActivityLog", "onCreate2")
 
+        val param = intent.getStringExtra("key") ?: "default value"
+        Log.e("ParametreLog", param)
+
+        val bundle = intent.extras
+        val bundleParam = bundle?.getString("keyBundle", "default bundle value") ?: "default bundle value"
+
+        Log.e("ParametreLog", bundleParam)
 //        val btnOpenSecondActivity = findViewById<Button>(R.id.btnOpenSecondActivity)
 //        btnOpenSecondActivity.setOnClickListener {
 //            startActivity(Intent(this, SecondActivity::class.java))

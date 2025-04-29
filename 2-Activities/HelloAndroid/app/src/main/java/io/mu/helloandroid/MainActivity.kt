@@ -2,6 +2,7 @@ package io.mu.helloandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -21,10 +22,24 @@ class MainActivity : AppCompatActivity() {
 
         val btnOpenSecondActivity = findViewById<Button>(R.id.btnOpenSecondActivity)
         btnOpenSecondActivity.setOnClickListener {
-            startActivity(Intent(this, SecondActivity::class.java))
-            finish()
+            Intent(this, SecondActivity::class.java).apply(::applyIntent).also(::alsoIntent)
 //            startActivityForResult()
         }
+    }
+
+    private fun applyIntent(intent: Intent) {
+        intent.putExtra("key", "value")
+        val bundle = Bundle().apply(::applyBundle)
+        intent.putExtras(bundle)
+    }
+
+    private fun alsoIntent(intent: Intent) {
+        startActivity(intent)
+        finish()
+    }
+
+    private fun applyBundle(bundle: Bundle) {
+        bundle.putString("keyBundle", "valueBundle")
     }
 
     override fun onStart() {
