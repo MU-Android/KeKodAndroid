@@ -12,7 +12,9 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
 
     lateinit var txtHelloWorld: TextView
-
+    private val cameraComponent = CameraComponent()
+    private val cameraComponent2 = CameraComponent2()
+    private val cameraComponent3 = CameraComponent3()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,9 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         txtHelloWorld = findViewById(R.id.txtHelloWorld)
 
-        txtHelloWorld.setOnClickListener{
+        txtHelloWorld.setOnClickListener {
             txtHelloWorld.text = "Hello Musa!"
         }
+
+        lifecycle.addObserver(cameraComponent)
+        lifecycle.addObserver(cameraComponent2)
+        lifecycle.addObserver(cameraComponent3)
     }
 
     override fun onStart() {
@@ -56,6 +62,9 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
 
         Log.e("MainActivityLog", "onDestroy")
+        lifecycle.removeObserver(cameraComponent)
+        lifecycle.removeObserver(cameraComponent2)
+        lifecycle.removeObserver(cameraComponent3)
     }
 
     override fun onContentChanged() {
