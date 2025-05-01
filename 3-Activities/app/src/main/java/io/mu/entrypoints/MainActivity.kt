@@ -3,6 +3,7 @@ package io.mu.entrypoints
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
 
     lateinit var txtHelloWorld: TextView
+    lateinit var btnOpenSettingsActivity: Button
     private val cameraComponent = CameraComponent()
     private val cameraComponent2 = CameraComponent2()
     private val cameraComponent3 = CameraComponent3()
@@ -32,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         lifecycle.addObserver(cameraComponent)
         lifecycle.addObserver(cameraComponent2)
         lifecycle.addObserver(cameraComponent3)
+
+        btnOpenSettingsActivity = findViewById<Button>(R.id.btnOpenSettingsActivity)
+        btnOpenSettingsActivity.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
@@ -132,5 +140,9 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    fun someBusinessLogic(name: String?, surname: String?) : String?{
+        return "Hello $name $surname"
     }
 }
