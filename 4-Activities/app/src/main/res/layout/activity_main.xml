@@ -12,17 +12,13 @@
 
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_vertical|end"
-        android:layout_margin="20dp"
-        android:background="@android:color/holo_orange_dark"
-        android:gravity="center_vertical|end"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:text="asdsadadad"
+        android:background="@android:color/darker_gray"
+        style="@style/titleText"
         android:textColor="@color/white"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <ImageView
         android:layout_width="50dp"
