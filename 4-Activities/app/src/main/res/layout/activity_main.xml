@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".MainActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/btnOpenSettingsActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openSettingsActivity2"
+        android:text="Open Settings Activity"
+        />
+
+    <Button
+        android:id="@+id/btnOpenSettingsActivity2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openSettingsActivity2"
+        android:text="Open Settings Activity"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Checkbox"/>
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Radio Button"/>
+</LinearLayout>
