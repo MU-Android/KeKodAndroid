@@ -1,0 +1,21 @@
+package io.mu.launchmodels
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class SecondActivity : AppCompatActivity() {
+    private lateinit var btnOpenMainActivity: Button
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
+
+        btnOpenMainActivity = findViewById<Button>(R.id.btnOpenMainActivity)
+        btnOpenMainActivity.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
+}
+
+//Activity'leri görüntüleme : /Users/musauyumaz/Library/Android/sdk/platform-tools/adb shell dumpsys activity activities | grep "Hist"
