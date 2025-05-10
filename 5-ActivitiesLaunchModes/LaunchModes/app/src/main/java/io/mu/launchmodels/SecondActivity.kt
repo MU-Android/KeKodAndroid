@@ -18,4 +18,3 @@ class SecondActivity : AppCompatActivity() {
     }
 }
 
-//Activity'leri görüntüleme : /Users/musauyumaz/Library/Android/sdk/platform-tools/adb shell dumpsys activity activities | grep "Hist"
