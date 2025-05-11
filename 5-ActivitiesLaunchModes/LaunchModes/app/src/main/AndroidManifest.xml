@@ -15,6 +15,7 @@
         <activity
             android:name=".singletask.SecondActivitySingleTask"
             android:exported="false"
+            android:taskAffinity="kekod.blabla"
             android:launchMode="singleTask"/>
         <activity
             android:name=".singletask.MainActivitySingleTask"
