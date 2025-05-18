@@ -1,0 +1,34 @@
+* Principles Of Navigation
+- Aşağıdaki prensipler manuel olarak navigation'ı yönetiyor olsak bile takip edilmelidir.
+
+1. Fixed start destination
+- Her uygulamanın standart ve değişmeyen bir giriş noktası bulunması gerekiyor. Birden fazla giriş noktası olan birden fazla launch edilen activity'e sahip uygulamalar yazmamalıyız.
+
+- Farklı durumlarda kullanıcının gördüğü farklı start destionationlarınız olabilir. Mesela oturumu olmayan kullanıcının register ekranını görürken, oturumu olan kullanıcının login ekranını görmesi gibi. Bu ekranları uygulamanın başlangıç noktası gibi düşünmemeliyiz. Çünkü bu ekranlar kullanıcının spesifik bazı durumlar geçerli ise göreceği ekranlar olacak.
+
+2. Navigation state is represented as a stack of destinations
+- Navigation component'i ya da manuel yönlendirmeyi kullanarak ilerlediğimiz her bir destination (genel olarak) uygulamanın task'ı üzerinde bir stack formatında bulunur. Bu stack LIFO şeklinde çalışır. "Last In First Out" son eklenen destination geri tuşuna basıldığında ilk ekrandan ayrılacak destination olacaktır. Bu stack kavramının genel adı android dünyasında backstack olarak isimlendirilir. Navigation Component'le bu backstack içerisindeki destination'ları yönetebiliriz.
+
+3. Up and Back are identical within your app's task
+- Kullanıcı destination'lar üzerinden ileri doğru hareket ettirirken backstack kullanıldığını söylemiştik. Bu backstack üzerinde geriye doğru hareket etmememizi sağlayan temelde 2 yapı mevcut. AppBar(actionBar) üzerinde bulunan geri iconu ve fiziksel cihazın üzerinde bulunan back butonu. Yeni bazı işletim sistemlerinde back gesture dediğimiz bir geri yönlendirme hareketi de mevcuttur. Yüm bu geri yönlendirmeler diğerleri ile aynı amaca hizmet etmeliler. AppBar üzerinde bulunan geri tuşu ile cihaz üzerinde bulunan geri tuşu farklı şekilde çalışmamalıdır.
+
+4. The up button never exits your app
+
+- Eğer appbar üzerinde bulunan geri iconu bir destionation'da bulunmuyırsa kullanıcı bu destionation'ın start destionation olduğunu düşünecektir. Bu destionation'dan sonra cihaz geri tuşuna basması veya back gesture kullanması kullanıcıyı uygulamadan çıkaracaktır. Bu sebeple, start destination olamayan bir ekrandayken (farklı bir ekrana geçiş yaptığınızda) bu ekran mutlaka appbar back icnu içermelidir. Yoksa kullanıcı bu destination'ı yanlış yorumlayacaktır. Hatta nasıl geriye döneceğini anlamayabilir bile.
+
+BottomSheetDialogFragment gibi fullscreen olarak da kullanılabilen dialoglarda geri tuşu yerine genellikle sağda X iconu görebilirsiniz. Bu X iconu ile stack'te yine geriye gidebilirsiniz. Bu ayrımın yapılma sebebi ekran açılış ve kapanış animasyonlarının activity, fragmentlerda benzer dialoglarda ise farklı oluşundan ötürüdür.
+
+5. Deep linking simulates manual navigation
+- Eğer deeplinkler yardımı ile uygulamanın destionation'ları arasında yönlendirme yapıyorsanız, bu sırada uygulamanın task'ı üzerinde var olan bir backstack varsa, bu var olan backstack, deeplink kullanarak geçtiğiniz ekranların sahip olacağı backstack ile yer değiştirilir.
+
+Yani;
+
+A -> B -> C ekranlarında geçiş yaptınız Backstack'inizde bu ekranlar bulunuyor. Uygulamayı home tuşuna basarak arka plana aldınız. Eğer kullanıcı bu noktadan sonra deeplink yardımı ile D ekranına yönleniyorsa, mevcut backstack deeplink backstack'i ile yer değiştirecek ve basitçe şöyle görünecektir.
+
+A -> D
+
+Bu deeplink backstack'innin synthetic back stack şeklinde de isimlendirildiğini duyarsınız.
+
+Bunun yanında dikkat etmemiz gereken bir nokta şu ki; kullnıcı bir deeplink ile detay ekrana yönlendiğinde eğer manuel olarak o ekrana giderken hangi ekranlardan geçiyorsa, deeplink ile direkt yaptığı yönlendirmeden sonra geri tuşuna basarak manuel yönlense idi, geçeceği ekranlardan geriye doğru dönmeyi bekleyecektir.
+
+Yani bir kullanıcıyı Kredi Kartı Başvur ekranına deeplink ile yönlendiriyorsak back tuşuna bastığında kullanıcıyı uygulamadan çıkartmamalıyız. Örnek olarak ya da Dashboard gibi bir ekrana ya da Başvur Menusu ekranına yönelendirmemiz gerekmektedir. Özetle kullanıcı manuel olarak o ekrana hangi ekranları kullanarak gidiyorsa, yine deeplink o ekranları stack'e alarak ilgili detay ekranını açması lazım ki geri tuşu bu ekranları kullanarak yine geriye dönebilsin ve uygulama tutarlılığı bozulmasın.
