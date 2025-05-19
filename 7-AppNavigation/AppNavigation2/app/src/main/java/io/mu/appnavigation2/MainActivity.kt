@@ -15,14 +15,18 @@ class MainActivity : AppCompatActivity() {
 //        getNavControllerViaFragmentSupportFragmentManager()
 //        getNavControllerViaViewSupportFragmentManager()
 
-        getNavControllerViaFragmentFindViewById()
+//        getNavControllerViaFragmentFindViewById()
 //        getNavControllerViaViewFindViewById()
+
+        getNavControllerViaFragmentFindNavController()
     }
 
     override fun onResume() {
         super.onResume()
 
-        getNavControllerViaViewFindViewById()
+//        getNavControllerViaViewFindViewById()
+        getNavControllerViaFragmentViewFindNavController()
+
     }
 
     fun getNavControllerViaFragmentSupportFragmentManager(){
@@ -45,5 +49,12 @@ class MainActivity : AppCompatActivity() {
         val navControllerView = navHostFragmentView.findNavController()
     }
 
+    fun getNavControllerViaFragmentFindNavController(){
+        findNavController(R.id.navHostFragment)
+    }
+
+    fun getNavControllerViaFragmentViewFindNavController(){
+        findNavController(R.id.navHostFragmentView)
+    }
 
 }
