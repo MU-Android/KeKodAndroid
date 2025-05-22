@@ -14,19 +14,38 @@
             android:id="@+id/action_dashboardFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_dashboardFragment_to_settingsDialogFragment2"
-            app:destination="@id/settingsDialogFragment2" />
+            android:id="@+id/action_dashboardFragment_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_secondActivity"
+            app:destination="@id/secondActivity" />
 
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="io.mu.jetpacknavigation.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+
+        <argument
+            android:name="userId"
+            app:argType="string"
+            android:defaultValue="Default Value"
+            app:nullable="false"/>
+
+        <deepLink
+            app:uri="https://www.example.com/profile/{userId}" />
+    </fragment>
     <dialog
-        android:id="@+id/settingsDialogFragment2"
+        android:id="@+id/settingsDialogFragment"
         android:name="io.mu.jetpacknavigation.SettingsDialogFragment"
         android:label="fragment_settings_dialog"
         tools:layout="@layout/fragment_settings_dialog" />
+
+    <activity
+        android:id="@+id/secondActivity"
+        android:name="io.mu.jetpacknavigation.SecondActivity"
+        android:label="SecondActivity"
+        />
 
 </navigation>
