@@ -3,6 +3,8 @@ package io.mu.jetpacknavigation
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -18,7 +20,14 @@ class MainActivity : AppCompatActivity() {
 //        getNavControllerViaFragmentFindViewById()
 //        getNavControllerViaViewFindViewById()
 
-        getNavControllerViaFragmentFindNavController()
+//        getNavControllerViaFragmentFindNavController()
+
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.profileFragment)
+            .setArguments(bundleOf())
+            .setComponentName(SecondActivity::class.java)
+            .createPendingIntent()
     }
 
     override fun onResume() {
@@ -32,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     fun getNavControllerViaFragmentSupportFragmentManager(){
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
+
+        navController.createDeepLink()
     }
 
     fun getNavControllerViaViewSupportFragmentManager(){

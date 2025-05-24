@@ -1,5 +1,6 @@
 package io.mu.jetpacknavigation
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,9 @@ class DashboardFragment : Fragment() {
 
         val btnOpenSecondActivity = view.findViewById<Button>(R.id.btnOpenSecondActivity)
         btnOpenSecondActivity.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_secondActivity)
+            val userId = 123
+            val deeplinkUri = Uri.parse("https://www.example.com/profile/$userId")
+            findNavController().navigate(deeplinkUri)
         }
     }
 }

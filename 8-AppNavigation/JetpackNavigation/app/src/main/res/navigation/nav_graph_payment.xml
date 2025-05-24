@@ -22,14 +22,24 @@
             android:id="@+id/action_placeholder3_to_placeholder1"
             app:destination="@id/placeholder1" />
     </fragment>
-    <fragment android:id="@+id/placeholder4">
+    <fragment android:id="@+id/placeholder4"
+        android:name="io.mu.jetpacknavigation.ProfileFragment">
         <action
             android:id="@+id/action_placeholder4_to_placeholder2"
             app:destination="@id/placeholder2" />
+
+        <argument
+            android:name="userId"
+            app:argType="string"
+            android:defaultValue="Default Value"
+            app:nullable="false"/>
+
+        <deepLink app:uri="https://www.example.com/profile/{userId}" />
     </fragment>
 
     <activity
         android:id="@+id/secondActivity"
         android:name="io.mu.jetpacknavigation.SecondActivity"
-        android:label="SecondActivity" />
+        android:label="SecondActivity" >
+    </activity>
 </navigation>
