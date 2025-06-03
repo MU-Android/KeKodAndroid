@@ -7,14 +7,16 @@ class Car(private val engine: Engine) {
     }
 }
 
-class Plane(private val engine: Engine) {
+class Plane() {
+    private lateinit var engine: Engine
 
+    fun setEngine(engine: Engine) {
+        this.engine = engine
+    }
     fun start() {
         engine.start()
     }
 }
-
-
 
 interface Engine {
     fun start()
@@ -50,4 +52,9 @@ fun main() {
     val hybridEngine = HybridEngine()
     val car3 = Car(hybridEngine)
     car3.start()
+
+
+    val plane = Plane()
+    plane.setEngine(GasEngine())
+    plane.start()
 }
