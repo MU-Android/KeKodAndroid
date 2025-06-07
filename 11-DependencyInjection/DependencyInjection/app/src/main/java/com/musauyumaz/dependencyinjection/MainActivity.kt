@@ -9,20 +9,23 @@ import androidx.core.view.WindowInsetsCompat
 import com.musauyumaz.dependencyinjection.analytics.AnalyticsAdapter
 import com.musauyumaz.dependencyinjection.analytics.AnalyticsService
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var analyticsAdapter: AnalyticsAdapter
+
+    @Inject
+     lateinit var analyticsAdapter: AnalyticsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         defaultActivityCodes()
 
-        analyticsAdapter = AnalyticsAdapter(object : AnalyticsService {
-            override fun analyticsMethod() {
-                Log.i("AnalyticsAdapter", "AnalyticsAdapter run")
-            }
-        })
+//        analyticsAdapter = AnalyticsAdapter(object : AnalyticsService {
+//            override fun analyticsMethod() {
+//                Log.i("AnalyticsAdapter", "AnalyticsAdapter run")
+//            }
+//        })
 
         analyticsAdapter.service.analyticsMethod()
 

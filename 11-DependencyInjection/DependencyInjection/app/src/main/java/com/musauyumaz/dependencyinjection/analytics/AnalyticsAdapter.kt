@@ -1,5 +1,7 @@
 package com.musauyumaz.dependencyinjection.analytics
 
-class AnalyticsAdapter(
+import javax.inject.Inject
+
+class AnalyticsAdapter @Inject constructor(
     val service: AnalyticsService
 )
