@@ -1,14 +1,34 @@
 package com.musauyumaz.dependencyinjection
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.musauyumaz.dependencyinjection.analytics.AnalyticsAdapter
+import com.musauyumaz.dependencyinjection.analytics.AnalyticsService
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var analyticsAdapter: AnalyticsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        defaultActivityCodes()
+
+        analyticsAdapter = AnalyticsAdapter(object : AnalyticsService {
+            override fun analyticsMethod() {
+                Log.i("AnalyticsAdapter", "AnalyticsAdapter run")
+            }
+        })
+
+        analyticsAdapter.service.analyticsMethod()
+
+    }
+
+    private fun defaultActivityCodes() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
