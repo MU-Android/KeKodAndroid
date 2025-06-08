@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 //        })
 
         analyticsAdapter.service.analyticsMethod()
+        analyticsAdapter.logger.boo()
 
     }
 
