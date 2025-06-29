@@ -8,4 +8,4 @@ annotation class AuthInterceptorRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class OtherInterceptorRetrofit 
+annotation class OtherInterceptorRetrofit
