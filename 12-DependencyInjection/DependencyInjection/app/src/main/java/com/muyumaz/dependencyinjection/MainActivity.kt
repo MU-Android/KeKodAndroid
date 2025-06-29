@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.muyumaz.dependencyinjection.analytics.AnalyticsService
 import com.muyumaz.dependencyinjection.analytics.Logger
+import com.muyumaz.dependencyinjection.di.AuthInterceptorRetrofit
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    @AuthInterceptorRetrofit
     @Inject
     lateinit var retrofit: Retrofit
 
