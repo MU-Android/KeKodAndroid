@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -32,6 +34,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures{
+        dataBinding = true
     }
 }
 
